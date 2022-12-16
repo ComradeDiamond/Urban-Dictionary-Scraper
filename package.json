@@ -1,0 +1,22 @@
+{
+  "name": "urban-dict-scraper",
+  "version": "1.0.0",
+  "description": "Scrapes number of entries over time in Urban Dictionary",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ComradeDiamond/Urban-Dictionary-Scraper.git"
+  },
+  "author": "Justin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ComradeDiamond/Urban-Dictionary-Scraper/issues"
+  },
+  "homepage": "https://github.com/ComradeDiamond/Urban-Dictionary-Scraper#readme",
+  "dependencies": {
+    "dom-parser": "^0.1.6"
+  }
+}

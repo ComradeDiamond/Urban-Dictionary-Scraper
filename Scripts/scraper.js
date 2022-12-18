@@ -34,7 +34,7 @@ function sendRequest(dataMap, year, month, day, page=1)
                 
                 dataMap[year].count += cnt;
                 console.log(`> ${year}-${month}-${day}-${page}: ${cnt}`)
-                fs.writeFile("./data.txt", `${year}-${month}-${day}-${page}: ${cnt}`, {flag: "a"});
+                fs.writeFile("./data.txt", `${year}-${month}-${day}-${page}: ${cnt}\n`, {flag: "a"}, ()=>{});
 
                 if (cnt != 0)
                 {

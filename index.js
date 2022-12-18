@@ -1,9 +1,11 @@
 const { scrape } = require("./Scripts/scraper.js");
+const { loadBackup } = require("./Scripts/backup.js");
 const http = require("http");
 const fs = require("fs");
 const url = require("url");
 
-scrape().then(dataMap => {
+loadBackup().then(dataMap => {
+    //console.log(dataMap)
     console.log("---------------------------");
     console.log("Data upload complete. Creating server...");
 
@@ -21,7 +23,7 @@ scrape().then(dataMap => {
             response.writeHead(200, {
                 "Content-Type": "application/json"
             });
-            response.end(dataMap);
+            response.end(JSON.stringify(dataMap));
         }
         else
         {

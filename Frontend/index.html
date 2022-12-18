@@ -10,10 +10,16 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Urban Dictionary Scraper</title>
         <style>
             h1
             {
                 font: 36pt "Trebuchet MS";
+                text-align: center;
+            }
+
+            #chartWrapper
+            {
                 text-align: center;
             }
         </style>
@@ -23,7 +29,7 @@
             {
                 let mapInfo = await fetchData();
 
-                const chartHTML = document.getElementById("myChart");
+                const chartHTML = document.getElementById("barChart");
                 new Chart(chartHTML, {
                     type: "bar",
                     data: {
@@ -47,14 +53,17 @@
                     method: "GET",
                 }).then(response => response.json())
                     .then(json => {
-                        resolve([Object.keys(json), Object.values(json)]);
+                        resolve([
+                            Object.keys(json), 
+                            Object.values(json).map(x => x.count)
+                        ]);
                     });
             });
         </script>
     </head>
     <body onload="init();">
         <h1>Number of Words Uploaded in Urban Dictionary (Per Year)</h1>
-        <div>
+        <div id="chartWrapper">
             <canvas id="barChart"></canvas>
         </div>
     </body>

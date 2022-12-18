@@ -2,6 +2,7 @@ const DomParser = require('dom-parser');
 const parser = new DomParser();
 const https = require("https");
 const { execute_over_yr } = require("./calendar");
+const fs = require("fs");
 
 /**
  * Recursively sends a request to urban dictionary through all its daily pages. Stops when we're out of words.
@@ -33,6 +34,7 @@ function sendRequest(dataMap, year, month, day, page=1)
                 
                 dataMap[year].count += cnt;
                 console.log(`> ${year}-${month}-${day}-${page}: ${cnt}`)
+                fs.writeFile("./data.txt", `${year}-${month}-${day}-${page}: ${cnt}`, {flag: "a"});
 
                 if (cnt != 0)
                 {

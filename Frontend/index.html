@@ -1,0 +1,61 @@
+<!--
+    Justin Chen
+    CAL-103D
+    I pledge my honor that I've abided by the Stevens Honor System (IDK if I need this but here ya go)
+    
+    If you're wondering why this exists, the librarian gave me an idea to web scrape Urban Dictionary for the research paper 
+    and make my own data so here we are down this rabbit hole
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            h1
+            {
+                font: 36pt "Trebuchet MS";
+                text-align: center;
+            }
+        </style>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            async function init()
+            {
+                let mapInfo = await fetchData();
+
+                const chartHTML = document.getElementById("myChart");
+                new Chart(chartHTML, {
+                    type: "bar",
+                    data: {
+                        labels: mapInfo[0],
+                        datasets: [{
+                            label: "# of Uploaded Words",
+                            data: mapInfo[1],
+                            borderWidth: 1
+                        }],
+                        options: {
+                            scales: {
+                                y: {beginAtZero: true}
+                            }
+                        }
+                    }
+                });
+            }
+            
+            const fetchData = () => new Promise((resolve, reject) => {
+                fetch("http://127.0.0.1:8081/getData", {
+                    method: "GET",
+                }).then(response => response.json())
+                    .then(json => {
+                        resolve([Object.keys(json), Object.values(json)]);
+                    });
+            });
+        </script>
+    </head>
+    <body onload="init();">
+        <h1>Number of Words Uploaded in Urban Dictionary (Per Year)</h1>
+        <div>
+            <canvas id="barChart"></canvas>
+        </div>
+    </body>
+</html>

@@ -5,7 +5,7 @@ const fs = require("fs");
 const url = require("url");
 
 //Use loadBackup() to use data.txt instead of getting fresh data
-scrape().then(dataMap => {
+loadBackup().then(dataMap => {
     //console.log(dataMap)
     console.log("---------------------------");
     console.log("Data upload complete. Creating server...");
